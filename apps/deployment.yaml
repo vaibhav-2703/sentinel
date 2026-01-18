@@ -25,7 +25,7 @@ metadata:
   name: demo-service
   namespace: default
 spec:
-  type: LoadBalancer  # <--- This is SAFE. Kyverno likes this.
+  type: ClusterIP  # <--- This is SAFE. Kyverno likes this.
   selector:
     app: demo
   ports:
