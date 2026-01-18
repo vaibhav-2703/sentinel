@@ -1,0 +1,18 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: block-loadbalancer
+spec:
+  validationFailureAction: Enforce
+  rules:
+  - name: block-service-loadbalancer
+    match:
+      any:
+      - resources:
+          kinds:
+          - Service
+    validate:
+      message: "🛑 ACCESS DENIED: LoadBalancers cost money! Use ClusterIP instead."
+      pattern:
+        spec:
+          type: "!LoadBalancer"
